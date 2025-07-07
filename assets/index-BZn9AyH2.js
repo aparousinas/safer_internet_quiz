@@ -2,7 +2,6 @@
     <div class="quiz-container">
       <h2>Ερώτηση ${r+1} από ${s.length}</h2>
       <p class="question">${i.question}</p>
-      <div class="tip"><em>Συμβουλή: ${i.tip}</em></div>
       <div class="options">
         ${i.options.map((t,o)=>`
               <button class="option-btn" data-idx="${o}">${t}</button>
@@ -11,7 +10,7 @@
       <div class="progress">Σκορ: ${u}</div>
       <div id="feedback"></div>
     </div>
-  `,document.querySelectorAll(".option-btn").forEach(t=>{t.addEventListener("click",o=>{if(c)return;c=!0;const a=Number(o.target.getAttribute("data-idx")),e=document.getElementById("feedback");a===i.answer?(u++,t.classList.add("correct"),e.innerHTML='<span style="color:green;">Σωστή απάντηση!</span>'):(t.classList.add("wrong"),e.innerHTML=`<span style="color:red;">Λάθος! Η σωστή απάντηση είναι: <strong>${i.options[i.answer]}</strong></span>`,document.querySelectorAll(".option-btn")[i.answer].classList.add("correct")),setTimeout(()=>{r++,r<s.length?l():m()},1200)})})}function m(){document.querySelector("#app").innerHTML=`
+  `,document.querySelectorAll(".option-btn").forEach(t=>{t.addEventListener("click",o=>{if(c)return;c=!0;const a=Number(o.target.getAttribute("data-idx")),e=document.getElementById("feedback");a===i.answer?(u++,t.classList.add("correct"),e.innerHTML='<span style="color:green;">Σωστή απάντηση!</span>'):(t.classList.add("wrong"),e.innerHTML=`<span style="color:red;">Λάθος! Η σωστή απάντηση είναι: <strong>${i.options[i.answer]}</strong></span>`,document.querySelectorAll(".option-btn")[i.answer].classList.add("correct")),e.innerHTML+=`<div class='tip' style='margin-top:1em;'><em>Συμβουλή: ${i.tip}</em></div>`,setTimeout(()=>{r++,r<s.length?l():m()},2200)})})}function m(){document.querySelector("#app").innerHTML=`
     <div class="quiz-container">
       <h2>Το quiz ολοκληρώθηκε!</h2>
       <p>Το σκορ σου: <strong>${u} / ${s.length}</strong></p>
